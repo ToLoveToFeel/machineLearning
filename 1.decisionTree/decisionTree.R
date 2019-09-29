@@ -68,11 +68,7 @@ data[ , 9] <- as.character(data[ , 9])  # 重新转为factor需要下面两步
 data[ , 9] <- as.factor(data[ , 9])
 # 查看数据格式
 head(data)
-###########################################################预处理结束
 
-
-
-################################算法执行主体###########################
 # 标准化，scaleddata中存储着标准化后的结果
 preProcValues <- preProcess(data[ , -9], method = c("center", "scale")) # 该函数默认剔除含有缺失值的数据后用剩下的数据计算均值和标准差
 scaleddata <- predict(preProcValues, data[ , -9])
@@ -85,8 +81,11 @@ boxdata <- predict(preProcbox, scaleddata)
 preProcimp <- preProcess(boxdata, method = "bagImpute")
 procdata <- predict(preProcimp, boxdata)
 procdata$class <- data[ , 9]
+###########################################################预处理结束
 
 
+
+################################算法执行主体###########################
 # 交叉验证
 fitControl <- trainControl(method = "repeatedcv",
                            number = 10,  # 10重交叉验证
@@ -120,6 +119,13 @@ plot(modelroc,
      auc.polygon.col = 'skyblue',
      print.thres = TRUE
 )
+
+# 预测
+pre <- predict(treemodel, type = 'raw')
+(preTable <- table(pre, procdata$class))  # 混淆矩阵
+(accuracy <- sum(diag(preTable))/sum(preTable)) # 精确度
+preTable[1, 1]/sum(preTable[ , 1]) # 特异度，正确判断非病人的比率
+preTable[2, 2]/sum(preTable[ , 2]) # 灵敏度，正确判断病人的比率
 
 rpartModel <- rpart(class ~ . ,
                     data = procdata,
