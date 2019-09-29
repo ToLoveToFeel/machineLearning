@@ -126,6 +126,10 @@ pre <- predict(treemodel, type = 'raw')
 (accuracy <- sum(diag(preTable))/sum(preTable)) # 精确度
 preTable[1, 1]/sum(preTable[ , 1]) # 特异度，正确判断非病人的比率
 preTable[2, 2]/sum(preTable[ , 2]) # 灵敏度，正确判断病人的比率
+(P <- preTable[2, 2]/sum(preTable[ 2, ]))  # P值
+(R <- preTable[2, 2]/sum(preTable[ , 2]))  # R值
+(F1 <- (2*P*R)/(P+R))  # F1值
+
 
 rpartModel <- rpart(class ~ . ,
                     data = procdata,
