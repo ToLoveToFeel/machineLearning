@@ -10,12 +10,13 @@
 1. git clone https://github.com/i-love-linux/machineLearning_R.git 克隆代码到本地
 2. 打开过程如下，首先点击电脑的Rstudio
 
-![img](D:\Code\R\machinelearning\img\1.png)
+![img](https://github.com/i-love-linux/machineLearning_R/blob/master/img/1.png)
 
-![img](D:\Code\R\machinelearning\img\2.png)
+![img](https://github.com/i-love-linux/machineLearning_R/blob/master/img/2.png)
 
 3. 运行结果
 
-![img](D:\Code\R\machinelearning\img\3.png)
+![img](https://github.com/i-love-linux/machineLearning_R/blob/master/img/3.png)
 
 <center>end</center>
+
