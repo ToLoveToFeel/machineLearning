@@ -1,4 +1,4 @@
-# machineLearning_R
+# machineLearning
 ## 各种机器学习算法的实现
 
 <font color=red>请务必提前安装好各代码所需要的库文件.</font>
